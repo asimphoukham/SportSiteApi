@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg2">
+      <h1>MLB Player Injuries</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7 mt-3 color1">
+      <!-- [(ngModel)]="teamSelected"-->
+      <a (click)="playerInfoBtn()"><img src="assets/Angels.gif" id="LAA"></a>
+    </div>
+    <div *ngFor='let injuryArray of injuriesArray' class="col-5 center color2">
+      <div class="col">
+
+
+        Player info displays here!!!
+          <h1>{{injuryArray.Name}}</h1>
+        <h1>{{injuryArray.FirstName}}</h1>
+        <h1>{{injuryArray.LastName}}</h1>
+        <!----<h1> {{firstName}} </h1>
+      <h1> {{lastName}} </h1>
+      <h1> {{position}} </h1>
+      <h1> {{injury}} </h1>
+      -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row" *ngFor='let injuryArray of injuriesArray'>
+    <div class="col pt-5">
+      <h1 class="color-black">Team Name: {{injuryArray.Name}}</h1>
+      <h1 class="color-black">First Name: {{injuryArray.FirstName}}</h1>
+      <h1 class="color-black">Last Name: {{injuryArray.LastName}}</h1>
+      <h1 class="color-black">Last Name: {{injuryArray.injury}}</h1>
+    </div>
+  </div>
+</div> -->
