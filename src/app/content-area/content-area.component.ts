@@ -9,11 +9,19 @@ import { IplayerData } from '../iplayer-data';
   styleUrls: ['./content-area.component.css']
 })
 export class ContentAreaComponent implements OnInit {
+
+  dateObj: number = Date.now();
+  // date and time
+
   injuriesArray: IplayerData[] = [];
+  // Array of all injured players from all teams from the IplayerData interface that was created 
+  // to pick particular info wanted
+  playerInjuriesArray: IplayerData[] = [];
+  // Array of injuried players from a specific team after the array of all teams were filtered out
   urlPlayerInjuries = 'https://api.mysportsfeeds.com/v1.2/pull/mlb/2019-regular/player_injuries.json';
 
-  teamSelected: any;
   playerResult: Iinjuries;
+  // Iinjuries interface data
   playerInfo: any;
   teamName = '';
 
@@ -22,39 +30,29 @@ export class ContentAreaComponent implements OnInit {
   ngOnInit() {
     this.dataService.getUrl(this.urlPlayerInjuries).subscribe(x => {
       console.log('ngOnInit() SAYS: this x->', x);
-      for (let pInjuries of x.playerinjuries.playerentry) {
+      for (const pInjuries of x.playerinjuries.playerentry) {
         const playerInfo: IplayerData = {
-          
           LastName: pInjuries.player.LastName,
           FirstName: pInjuries.player.FirstName,
           Position: pInjuries.player.Position,
           injury: pInjuries.injury,
           Name: pInjuries.team.Name, // Team
           Abbreviation: pInjuries.team.Abbreviation,
+          City: pInjuries.team.City,
         };
         this.injuriesArray.push(playerInfo);
-        console.log(playerInfo);
+      //  console.log(playerInfo);
       }
     });
   }
 
-  getPlayerInfo() {
-    if (this.teamSelected) {
-      // tslint:disable-next-line: max-line-length
-      this.urlPlayerInjuries = `https://api.mysportsfeeds.com/v1.2/pull/mlb/2019-regular/player_injuries.json${this.teamSelected}f8428026-0f5b-475b-96c5-b217bd`;
-      this.dataService.getUrl(this.urlPlayerInjuries).subscribe(
-        rsp => {
-          this.playerResult = rsp;
-          this.playerInfo = this.playerResult;
-          this.teamName =
-            this.playerInfo.pInjuries.team.Abbreviation;
-          console.log(this.playerInfo.pInjuries.team.Abbreviation);
-        }
-      );
+  getTeamInj(team: string) { // We send in the abbreviation from the click event in html.
+    this.playerInjuriesArray = [];
+    for (const t of this.injuriesArray) { // Doing a for loop where t is the object from injuries array
+      if (team === t.Abbreviation) {
+        console.log(t); // This is where you would pull the firstname and lastname and anything else.
+        this.playerInjuriesArray.push(t);
+      }
     }
-  }
-  playerInfoBtn() {
-    this.getPlayerInfo();
-    console.log('button is clickable');
   }
 }

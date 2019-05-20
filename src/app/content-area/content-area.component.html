@@ -1,34 +1,102 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col bg2">
+    <div class="col"></div>
+    <div class="col bg2 heartbeat">
       <h1>MLB Player Injuries</h1>
+    </div>
+    <div class="col">
+      <h6>{{ dateObj | date:'medium' }}</h6>
     </div>
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid logos">
   <div class="row">
-    <div class="col-7 mt-3 color1">
-      <!-- [(ngModel)]="teamSelected"-->
-      <a (click)="playerInfoBtn()"><img src="assets/Angels.gif" id="LAA"></a>
+    <div class="col fadeIn">
+      <a (click)="getTeamInj('LAA')"><img src="assets/angels.png" width="10%"></a>
+      <a (click)="getTeamInj('HOU')"><img src="assets/astros.png" width="10%"></a>
+      <a (click)="getTeamInj('OAK')"><img src="assets/athletics.png" width="10%"></a>
+      <a (click)="getTeamInj('TOR')"><img src="assets/blueJays.png" width="10%"></a>
+      <a (click)="getTeamInj('ATL')"><img src="assets/braves.png" width="10%"></a>
+      <a (click)="getTeamInj('MIL')"><img src="assets/brewers.png" width="10%"></a>
+      <a (click)="getTeamInj('STL')"><img src="assets/cardinals.png" width="10%"></a>
+      <a (click)="getTeamInj('CHC')"><img src="assets/cubs.png" width="10%"></a>
+      <a (click)="getTeamInj('ARI')"><img src="assets/diamondbacks.png" width="10%"></a>
+      <a (click)="getTeamInj('LAD')"><img src="assets/dodgers.png" width="10%"></a>
     </div>
-    <div *ngFor='let injuryArray of injuriesArray' class="col-5 center color2">
-      <div class="col">
+  </div>
+  <div class="row">
+    <div class="col fadeIn">
+      <a (click)="getTeamInj('SF')"><img src="assets/giants.png" width="10%"></a>
+      <a (click)="getTeamInj('CLE')"><img src="assets/indians.png" width="10%"></a>
+      <a (click)="getTeamInj('SEA')"><img src="assets/mariners.png" width="10%"></a>
+      <a (click)="getTeamInj('MIA')"><img src="assets/marlins.png" width="10%"></a>
+      <a (click)="getTeamInj('NYM')"><img src="assets/mets.png" width="10%"></a>
+      <a (click)="getTeamInj('WAS')"><img src="assets/nationals.png" width="10%"></a>
+      <a (click)="getTeamInj('BAL')"><img src="assets/orioles.png" width="10%"></a>
+      <a (click)="getTeamInj('SD')"><img src="assets/padres.png" width="10%"></a>
+      <a (click)="getTeamInj('PHI')"><img src="assets/phillies.png" width="10%"></a>
+      <a (click)="getTeamInj('PIT')"><img src="assets/pirates.png" width="10%"></a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col fadeIn">
+      <a (click)="getTeamInj('TEX')"><img src="assets/rangers.png" width="10%"></a>
+      <a (click)="getTeamInj('TB')"><img src="assets/rays.png" width="10%"></a>
+      <a (click)="getTeamInj('CIN')"><img src="assets/reds.png" width="10%"></a>
+      <a (click)="getTeamInj('BOS')"><img src="assets/redSox.png" width="10%"></a>
+      <a (click)="getTeamInj('COL')"><img src="assets/rockies.png" width="10%"></a>
+      <a (click)="getTeamInj('KC')"><img src="assets/royals.png" width="10%"></a>
+      <a (click)="getTeamInj('DET')"><img src="assets/tigers.png" width="10%"></a>
+      <a (click)="getTeamInj('MIN')"><img src="assets/twins.png" width="10%"></a>
+      <a (click)="getTeamInj('CWS')"><img src="assets/whiteSox.png" width="10%"></a>
+      <a (click)="getTeamInj('NYY')"><img src="assets/yankees.png" width="10%"></a>
+    </div>
+  </div>
+</div>
 
-
-        Player info displays here!!!
-          <h1>{{injuryArray.Name}}</h1>
-        <h1>{{injuryArray.FirstName}}</h1>
-        <h1>{{injuryArray.LastName}}</h1>
-        <!----<h1> {{firstName}} </h1>
-      <h1> {{lastName}} </h1>
-      <h1> {{position}} </h1>
-      <h1> {{injury}} </h1>
-      -->
+<div class="container-fluid mt-2">
+  <div class="row">
+    <div *ngFor='let injuryArray of playerInjuriesArray'>
+      <div class="card border-danger mb-3 ml-4" style="height: 18rem; width: 17rem;">
+        <div class="card-header center">{{injuryArray.Name}}</div>
+        <div class="card-body text-danger">
+          <h5 class="card-title"> <b>Player:</b> {{injuryArray.FirstName}} {{injuryArray.LastName}}</h5>
+          <p class="card-text"> <b>Team city:</b> {{injuryArray.City}}</p>
+          <p class="card-text"> <b>Position:</b> {{injuryArray.Position}}</p>
+          <p class="card-text"> <b>Injury:</b> {{injuryArray.injury}}</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<!-- 
+    <div class="col">
+      <div *ngFor='let injuryArray of playerInjuriesArray' class="center">
+        <div class="card border-danger mb-3" style="max-width: 18rem;">
+          <div class="card-header">{{injuryArray.Name}}</div>
+          <div class="card-body text-danger">
+            <h5 class="card-title">{{injuryArray.FirstName}} {{injuryArray.LastName}}</h5>
+            <p class="card-text">{{injuryArray.Position}}</p>
+            <p class="card-text">{{injuryArray.injury}}</p>
+          </div>
+        </div>
+      </div>
+    </div>  -->
+
+<!--    <div *ngFor='let injuryArray of playerInjuriesArray' class="col-5 center color2">
+      <div class="col">
+
+          <h1>{{injuryArray.Name}}</h1>
+        <h1>{{injuryArray.FirstName}}</h1>
+        <h1>{{injuryArray.LastName}}</h1>
+        --<h1> {{firstName}} </h1>
+      <h1> {{lastName}} </h1>
+      <h1> {{position}} </h1>
+      <h1> {{injury}} </h1>
+      
+      </div>
+    </div> -->
 
 <!-- <div class="container">
   <div class="row" *ngFor='let injuryArray of injuriesArray'>

@@ -5,4 +5,5 @@ export interface IplayerData {
     injury: string;
     Name: string;
     Abbreviation: string;
+    City: string;
 }
